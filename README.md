@@ -12,4 +12,4 @@ This is an application built with the Express framework in Nodejs environment th
 - Install dependencies\
 ```npm install```
 - Run the app in development mode\
-```DEBUG=nodejs-express-shopping-system:* npm start```
+```DEBUG=nodejs-express-shopping-system:* npm start``` On macOS or Linux or ```SET DEBUG=nodejs-express-shopping-system:* & npm start``` on Windows CMD prompt
