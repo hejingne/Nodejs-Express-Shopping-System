@@ -7,3 +7,9 @@ This is an application built with the Express framework in Nodejs environment th
 - Connect to MongoDB with Mongoose for data storage and operations
 - Implement website routings and controllers 
 - Work with forms to extract user inputs
+
+# Available scripts
+- Install dependencies\
+```npm install```
+- Run the app in development mode\
+```DEBUG=nodejs-express-shopping-system:* npm start```
