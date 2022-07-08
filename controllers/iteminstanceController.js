@@ -1,7 +1,15 @@
 var ItemInstance = require('../models/iteminstance');
 
-exports.iteminstance_list = function(req, res) {
-  res.send('iteminstance list')
+exports.iteminstance_list = function(req, res, next) {
+  ItemInstance.find() // Return all ItemInstance objects
+  .populate('item') // Replace the stored item id in each ItemInstance object with the full item document
+  .exec(function(err, results) {
+    if (err) {return next(err)}
+    res.render('iteminstance_list', {
+      title: 'Item Instance List',
+      iteminstance_list: results
+    })
+  })
 }
 
 exports.iteminstance_detail = function(req, res) {

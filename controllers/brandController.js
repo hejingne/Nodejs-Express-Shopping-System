@@ -1,7 +1,15 @@
 var Brand = require('../models/brand');
 
-exports.brand_list = function(req, res) {
-  res.send('brand list')
+exports.brand_list = function(req, res, next) {
+  Brand.find()
+  .sort([['name', 'ascending']])
+  .exec(function(err, results) {
+    if (err) {return next(err)}
+    res.render('brand_list', {
+      title: 'Brand List',
+      brand_list: results
+    })
+  })
 }
 
 exports.brand_detail = function(req, res) {

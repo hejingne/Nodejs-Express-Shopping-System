@@ -2,4 +2,18 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to #[em Local Atheletic Clothing E-Shop].
+
+  h1 Dynamic content
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The shop has the following record counts:
+
+    ul
+      li #[strong Items:] !{data.item_count}
+      li #[strong Units:] !{data.item_instance_count}
+      li #[strong Units Available:] !{data.item_instance_available_count}
+      li #[strong Brands:] !{data.brand_count}
+      li #[strong Styles:] !{data.style_count}

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each style in style_list
+      li
+        a(href=style.url) #{style.name}
+
+    else
+      li There are no styles.

@@ -1,7 +1,15 @@
 var Style = require('../models/style');
 
-exports.style_list = function(req, res) {
-  res.send('style list')
+exports.style_list = function(req, res, next) {
+  Style.find()
+  .sort([['name', 'ascending']])
+  .exec(function(err, results) {
+    if (err) {return next(err)}
+    res.render('style_list', {
+      title: 'Style List',
+      style_list: results
+    })
+  })
 }
 
 exports.style_detail = function(req, res) {

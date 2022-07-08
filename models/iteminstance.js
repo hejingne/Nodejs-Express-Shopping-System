@@ -1,3 +1,5 @@
+const {DateTime} = require('luxon');
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -14,6 +16,12 @@ var ItemInstanceSchema = new Schema(
 ItemInstanceSchema.virtual('url').get(
   function() {
     return '/catalog/iteminstance/' + this._id;
+  }
+);
+
+ItemInstanceSchema.virtual('due_clearance_formatted').get(
+  function() {
+    return DateTime.fromJSDate(this.due_clearance).toLocaleString(DateTime.DATE_MED);
   }
 );
 
