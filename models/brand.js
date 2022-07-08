@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var BrandSchema = new Schema(
+var BrandSchema = new Schema(  // (aka Designer)
   {
     name: {type: String, required: true, maxLength: 100},
     country: {type: String, required: true, maxLength: 20}

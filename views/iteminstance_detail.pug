@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 ID: #{iteminstance._id}
+
+  p #[strong Name: ]
+    a(href=iteminstance.item.url) #{iteminstance.item.name}
+
+  p #[strong Status: ]
+    if iteminstance.status=='Available'
+      span.text-success #{iteminstance.status}
+    else if iteminstance.status=='Out of Stock'
+      span.text-danger #{iteminstance.status}
+    else
+      span.text-warning #{iteminstance.status}
+
+  if iteminstance.status!='Available'
+    p #[strong Due clearance: ] #{iteminstance.due_clearance}

@@ -12,8 +12,21 @@ exports.iteminstance_list = function(req, res, next) {
   })
 }
 
-exports.iteminstance_detail = function(req, res) {
-  res.send(`iteminstance detail for ${req.params.id}`)
+exports.iteminstance_detail = function(req, res, next) {
+  ItemInstance.findById(req.params.id)
+  .populate('item')
+  .exec(function(err, iteminstance) {
+    if (err) {return next(err)}
+    if (iteminstance==null) { // If there's no such iteminstance
+      var err = new Error("Item Instance Not Found")
+      err.status = 404
+      return next(err)
+    }
+    res.render('iteminstance_detail', {
+      title: `Unit of ${iteminstance.item.name}`,
+      iteminstance: iteminstance
+    })
+  })
 }
 
 exports.iteminstance_create_get = function(req, res) {

@@ -49,8 +49,33 @@ exports.item_list = function(req, res, next) {
   })
 }
 
-exports.item_detail = function(req, res) {
-  res.send(`item detail for ${req.params.id}`)
+exports.item_detail = function(req, res, next) {
+  async.parallel(
+    {
+      item: function(cb) {
+        Item.findById(req.params.id)
+        .populate('brand')
+        .populate('style')
+        .exec(cb);
+      },
+      item_instance: function(cb) {
+        ItemInstance.find({ 'item': req.params.id}).exec(cb)
+      }
+    },
+    function(err, results) {
+      if (err) {return next(err) }
+      if (results.item==null) { // If there's no results
+        var err = new Error("Item Not Found")
+        err.status = 404
+        return next(err)
+      }
+      res.render('item_detail', {
+        title: results.item.name,
+        item: results.item,
+        item_instances: results.item_instance
+        }
+      )
+    })
 }
 
 exports.item_create_get = function(req, res) {

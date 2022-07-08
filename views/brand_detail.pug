@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 Designer: #{brand.name}
+  p from #{brand.country}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 items
+
+    dl
+      each item in brand_items
+        dt
+          a(href=item.url) #{item.name}
+        dd #{item.description}
+
+      else
+        p This brand has no items.

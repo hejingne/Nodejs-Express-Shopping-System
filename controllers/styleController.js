@@ -1,3 +1,6 @@
+var async = require('async');
+
+var Item = require('../models/item');
 var Style = require('../models/style');
 
 exports.style_list = function(req, res, next) {
@@ -12,8 +15,34 @@ exports.style_list = function(req, res, next) {
   })
 }
 
-exports.style_detail = function(req, res) {
-  res.send(`style detail for ${req.params.id}`)
+exports.style_detail = function(req, res, next) {
+  async.parallel(
+    {
+      style: function(cb) {
+        Style.findById(req.params.id).exec(cb);
+      },
+      style_items: function(cb) {
+        Item.find({
+          'style': req.params.id
+        })
+        .populate('brand')
+        .exec(cb)
+      }
+    },
+    function (err, results) {
+      if (err) {return next(err)}
+      if (results.style==null) {  // If there's no results
+        var err = new Error('Style Not Found')
+        err.status = 404
+        return next(err)
+      }
+      res.render('style_detail', {
+        title: 'Style Detail',
+        style: results.style,
+        style_items: results.style_items
+      })
+    }
+  )
 }
 
 exports.style_create_get = function(req, res) {

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1 Name: #{item.name}
+
+  p #[strong Designer:]
+    a(href=item.brand.url)  #{item.brand.name} - #{item.brand.country}
+  p #[strong Description:] #{item.description}
+  p #[strong Category:] #{item.category}
+  p #[strong Style:]
+    each val, index in item.style
+      a(href=val.url) #{val.name}
+      if index < item.style.length - 1
+         | ,
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Units
+
+    each val in item_instances
+      hr
+      if val.status=='Available'
+        p.text-success #{val.status}
+      else if val.status=='Out of Stock'
+        p.text-danger #{val.status}
+      else
+        p.text-warning #{val.status}
+      if val.status!='Available'
+        p #[strong Due clearance:] #{val.due_clearance}
+      p #[strong Id:]
+        a(href=val.url)  #{val._id}
+
+    else
+      p There are no Units of this item in the library.
