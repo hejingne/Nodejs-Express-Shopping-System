@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text' placeholder='Name (i.e. Mike)' name='name' required='true' value=(undefined===brand ? '' : brand.name) )
+      label(for='country') Family Name:
+      input#country.form-control(type='text' placeholder='Country (i.e. Australia)' name='country' required='true' value=(undefined===brand ? '' : brand.country))
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
