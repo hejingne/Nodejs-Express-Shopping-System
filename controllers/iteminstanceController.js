@@ -69,7 +69,7 @@ exports.iteminstance_create_post = [
                     if (err) { return next(err); }
                     // Successful, so render.
                     res.render('iteminstance_form', {
-                      name: 'Create ItemInstance', 
+                      name: 'Create ItemInstance',
                       item_list: items,
                       selected_item: iteminstance.item._id,
                       errors: errors.array(),
@@ -87,19 +87,3 @@ exports.iteminstance_create_post = [
         }
     }
 ];
-
-exports.iteminstance_delete_get = function(req, res) {
-  res.send('iteminstance delete GET')
-}
-
-exports.iteminstance_delete_post = function(req, res) {
-  res.send('iteminstance delete POST')
-}
-
-exports.iteminstance_update_get = function(req, res) {
-  res.send('iteminstance update GET')
-}
-
-exports.iteminstance_update_post = function(req, res) {
-  res.send('iteminstance update POST')
-}

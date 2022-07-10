@@ -115,24 +115,17 @@ exports.brand_delete_post = function(req, res, next) {
         res.render('brand_delete', {
          title: 'Delete brand',
          brand: results.brand,
-         brand_items: results.brands_items } );
+         brand_items: results.brands_items
+       });
         return;
     }
     else {
         // brand has no items. Delete object and redirect to the list of brands.
-        brand.findByIdAndRemove(req.body.brandid, function deletebrand(err) {
+        Brand.findByIdAndRemove(req.body.brandid, function deletebrand(err) {
             if (err) { return next(err); }
             // Success - go to brand list
             res.redirect('/catalog/brands')
         })
     }
 });
-}
-
-exports.brand_update_get = function(req, res, next) {
-  res.send('brand update GET')
-}
-
-exports.brand_update_post = function(req, res, next) {
-  res.send('brand update POST')
 }

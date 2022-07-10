@@ -52,7 +52,7 @@ exports.style_create_get = function(req, res, next) {
   })
 }
 
-exports.style_create_post = [   // Note: An array of middleware functions
+exports.style_create_post = [   // Note: An array of middleware functions, each function is called in order
   // Validate and sanitize the name field
   body('name', 'Style name required').trim().isLength({ min: 1 }).escape(),
 
@@ -92,19 +92,3 @@ exports.style_create_post = [   // Note: An array of middleware functions
     }
   }
 ]
-
-exports.style_delete_get = function(req, res, next) {
-  res.send('style delete GET')
-}
-
-exports.style_delete_post = function(req, res, next) {
-  res.send('style delete POST')
-}
-
-exports.style_update_get = function(req, res, next) {
-  res.send('style update GET')
-}
-
-exports.style_update_post = function(req, res, next) {
-  res.send('style update POST')
-}

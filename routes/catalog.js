@@ -18,12 +18,6 @@ router.get('/item/create', item_controller.item_create_get);
 // POST request for creating item.
 router.post('/item/create', item_controller.item_create_post);
 
-// GET request to delete item.
-router.get('/item/:id/delete', item_controller.item_delete_get);
-
-// POST request to delete item.
-router.post('/item/:id/delete', item_controller.item_delete_post);
-
 // GET request to update item.
 router.get('/item/:id/update', item_controller.item_update_get);
 
@@ -50,12 +44,6 @@ router.get('/brand/:id/delete', brand_controller.brand_delete_get);
 // POST request to delete brand.
 router.post('/brand/:id/delete', brand_controller.brand_delete_post);
 
-// GET request to update brand.
-router.get('/brand/:id/update', brand_controller.brand_update_get);
-
-// POST request to update brand.
-router.post('/brand/:id/update', brand_controller.brand_update_post);
-
 // GET request for one brand.
 router.get('/brand/:id', brand_controller.brand_detail);
 
@@ -70,43 +58,19 @@ router.get('/style/create', style_controller.style_create_get);
 //POST request for creating style.
 router.post('/style/create', style_controller.style_create_post);
 
-// GET request to delete style.
-router.get('/style/:id/delete', style_controller.style_delete_get);
-
-// POST request to delete style.
-router.post('/style/:id/delete', style_controller.style_delete_post);
-
-// GET request to update style.
-router.get('/style/:id/update', style_controller.style_update_get);
-
-// POST request to update style.
-router.post('/style/:id/update', style_controller.style_update_post);
-
 // GET request for one style.
 router.get('/style/:id', style_controller.style_detail);
 
 // GET request for list of all style.
 router.get('/styles', style_controller.style_list);
 
-/// itemINSTANCE ROUTES ///
+/// iteminstance ROUTES ///
 
 // GET request for creating an itemInstance. NOTE This must come before route that displays itemInstance (uses id).
 router.get('/iteminstance/create', item_instance_controller.iteminstance_create_get);
 
 // POST request for creating itemInstance.
 router.post('/iteminstance/create', item_instance_controller.iteminstance_create_post);
-
-// GET request to delete itemInstance.
-router.get('/iteminstance/:id/delete', item_instance_controller.iteminstance_delete_get);
-
-// POST request to delete itemInstance.
-router.post('/iteminstance/:id/delete', item_instance_controller.iteminstance_delete_post);
-
-// GET request to update itemInstance.
-router.get('/iteminstance/:id/update', item_instance_controller.iteminstance_update_get);
-
-// POST request to update itemInstance.
-router.post('/iteminstance/:id/update', item_instance_controller.iteminstance_update_post);
 
 // GET request for one itemInstance.
 router.get('/iteminstance/:id', item_instance_controller.iteminstance_detail);
