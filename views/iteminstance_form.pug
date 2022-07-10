@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1=name
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='item') Item:
+      select#item.form-control(type='select' placeholder='Select item' name='item' required='true')
+        - item_list.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for item in item_list
+          option(value=item._id, selected=(selected_item==item._id.toString() ? 'selected' : false) ) #{item.name}
+
+    div.form-group
+      label(for='due_clearance') Date when item on clearance:
+      input#due_clearance.form-control(type='date' name='due_clearance' value=(undefined===iteminstance ? '' : iteminstance.due_clearance))
+
+    div.form-group
+      label(for='status') Status:
+      select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
+        option(value='Available') Available
+        option(value='Reserved') Reserved
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

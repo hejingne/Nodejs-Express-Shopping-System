@@ -9,8 +9,8 @@ This is an application built with the Express framework in Nodejs environment th
 - Implement website routings to receive and forward http requests to be processed by controller functions
 - Incorporate ```MVC``` design pattern by separating out controller logic with created models and layout templates
 - Work with forms to collect user inputs
-- Inspect form data using the ```express-validator``` module and validation and sanitization chains as middleware
-- Error handling for cases such as where users intend to add new item from designer that does not exist or to remove a style from database when it is still being referenced by an item, etc
+- Inspect form data using the ```express-validator``` module and validation and sanitization chains as ```middleware```
+- Error handling for corner cases such as where users intend to add new item from designer that does not exist or to remove a style from database when it is still being referenced by an item, etc
 
 # Available scripts
 - Install dependencies\

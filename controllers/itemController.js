@@ -101,7 +101,7 @@ exports.item_create_get = function(req, res, next) {
 exports.item_create_post = [
     // Convert the style to an array.
     (req, res, next) => {
-        if(!(req.body.style instanceof Array)){
+        if(!(req.body.style instanceof Array)) {
             if(typeof req.body.style ==='undefined')
             req.body.style = [];
             else

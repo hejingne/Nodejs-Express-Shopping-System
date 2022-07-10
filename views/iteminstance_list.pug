@@ -6,15 +6,14 @@ block content
   ul
     each val in iteminstance_list
       li
-        a(href=val.url) #{val.item.name} : 
+        a(href=val.url) #{val.item.name} :
         if val.status=='Available'
           span.text-success #{val.status}
         else if val.status=='Out of Stock'
           span.text-danger #{val.status}
         else
           span.text-warning #{val.status}
-        if val.status!='Available'
-          span  (On Clearance: #{val.due_clearance_formatted})
+        span  (On Clearance: #{val.due_clearance_formatted})
 
     else
       li There are no item units left in the shop.

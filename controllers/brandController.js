@@ -78,18 +78,61 @@ exports.brand_create_post = [
   }
 ]
 
-exports.brand_delete_get = function(req, res) {
-  res.send('brand delete GET')
+exports.brand_delete_get = function(req, res, next) {
+  async.parallel({
+        brand: function(callback) {
+            Brand.findById(req.params.id).exec(callback)
+        },
+        brands_items: function(callback) {
+            Item.find({ 'brand': req.params.id }).exec(callback)
+        },
+    }, function(err, results) {
+        if (err) { return next(err); }
+        if (results.brand==null) { // No results.
+            res.redirect('/catalog/brands');
+        }
+        res.render('brand_delete', {
+           title: 'Delete Brand',
+           brand: results.brand,
+           brand_items: results.brands_items
+         } );
+    });
 }
 
-exports.brand_delete_post = function(req, res) {
-  res.send('brand delete POST')
+exports.brand_delete_post = function(req, res, next) {
+  async.parallel({
+    brand: function(callback) {
+      Brand.findById(req.body.brandid).exec(callback)
+    },
+    brands_items: function(callback) {
+      Item.find({ 'brand': req.body.brandid }).exec(callback)
+    },
+}, function(err, results) {
+    if (err) { return next(err); }
+    // Success
+    if (results.brands_items.length > 0) {
+        // brand has items. Render in same way as for GET route.
+        res.render('brand_delete', {
+         title: 'Delete brand',
+         brand: results.brand,
+         brand_items: results.brands_items } );
+        return;
+    }
+    else {
+        // brand has no items. Delete object and redirect to the list of brands.
+        brand.findByIdAndRemove(req.body.brandid, function deletebrand(err) {
+            if (err) { return next(err); }
+            // Success - go to brand list
+            res.redirect('/catalog/brands')
+        })
+    }
+});
 }
 
-exports.brand_update_get = function(req, res) {
+exports.brand_update_get = function(req, res, next) {
   res.send('brand update GET')
 }
 
-exports.brand_update_post = function(req, res) {
+exports.brand_update_post = function(req, res, next) {
   res.send('brand update POST')
 }
