@@ -11,6 +11,7 @@ This is an application built with the Express framework in Nodejs environment th
 - Work with forms to collect user inputs
 - Inspect form data using the ```express-validator``` module and validation and sanitization chains as ```middleware```
 - ```Error handling``` for corner cases such as where users intend to add new item from designer that does not exist or to remove a style from database when it is still being referenced by an item, etc
+- Deploy to production on Heroku. Website: https://nodejs-express-e-shop.herokuapp.com
 
 # Available scripts
 - Install dependencies\
